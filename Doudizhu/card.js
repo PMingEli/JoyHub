@@ -8,11 +8,10 @@ class card {
 }
 
 //console.log(card)
-
+//针灸
 var list_type = ["Heart", "Spade", "Diamond", "Club"]//花色：红心❤，黑桃♠，方块♦，梅花♣
 var list_number = ["3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2"]
-//真牛啊
-//xnciehi
+
 function Set() {
     this.dataStore = [];
     this.add = add;//新增元素
