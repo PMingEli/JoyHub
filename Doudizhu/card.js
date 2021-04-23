@@ -1,4 +1,9 @@
 "use strict";
+//console.log(card)//console.log(card)
+//console.log(card)
+//console.log(card)
+//console.log(card)
+
 class card {
     constructor(type, number, weight) {
         this.type = type;
