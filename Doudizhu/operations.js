@@ -1,11 +1,12 @@
-import { orderBy, sortBy } from 'lodash'
+//import { orderBy, sortBy } from 'lodash'
+
 var logic = {}
 logic.canPlayCardsJudge = function (cards, curCards) {
     var type1 = this.cardsTypeJudge(cards)
     console.log(`点击选择的纸牌：${type1}`)
     var type2 = this.cardsTypeJudge(curCards)
     console.log(`桌面上已有牌型：${type2}`)
-    if (cards.length > 0 && curCards.length > 0) {
+    if (cards.dataStore.length > 0 && curCards.dataStore.length > 0) {
         if (type1 != type2) { //牌型不同
             if (!(type1 == '火箭' || (type1 == '炸弹' && type2 != '火箭'))) {
                 console.log(`牌型不同`)
@@ -14,21 +15,21 @@ logic.canPlayCardsJudge = function (cards, curCards) {
         }
         else { //牌型相同
             if (type1 == '单牌' || type1 == '对牌' || type1 == '三张牌' || type1 == '炸弹') {
-                if (cards[0].weight <= curCards[0].weight) {
+                if (cards.dataStore[0].weight <= curCards.dataStore[0].weight) {
                     console.log(`分值小于等于牌桌上的牌`)
                     return 1
                 }
             }
-            if (cards.length != curCards.length) {
+            if (cards.dataStore.length != curCards.dataStore.length) {
                 console.log(`总张数不同`)
                 return 1
             }
             else {
-                cards = orderBy(cards, ['weight'], ['desc'])
-                curCards = orderBy(curCards, ['weight'], ['desc'])
+                //cards = orderBy(cards, ['weight'], ['desc'])
+                //curCards = orderBy(curCards, ['weight'], ['desc'])
 
                 if (type1 == '单顺' || type1 == '双顺' || type1 == '三顺') {
-                    if (cards[0].weight <= curCards[0].weight) {
+                    if (cards.dataStore[0].weight <= curCards.dataStore[0].weight) {
                         console.log(`分值小于等于牌桌上的牌`)
                         return 1
                     }
@@ -37,21 +38,21 @@ logic.canPlayCardsJudge = function (cards, curCards) {
                     var mark = {}
                     var x = 0
                     var y = 0
-                    for (var i = 0; i < cards.length; i++) {
-                        if (!mark[cards[i].weight])
-                            mark[cards[i].weight] = 1
+                    for (var i = 0; i < cards.dataStore.length; i++) {
+                        if (!mark[cards.dataStore[i].weight])
+                            mark[cards.dataStore[i].weight] = 1
                         else
-                            mark[cards[i].weight]++
-                        if (mark[cards[i].weight] == 3)
-                            x = cards[i].weight
+                            mark[cards.dataStore[i].weight]++
+                        if (mark[cards.dataStore[i].weight] == 3)
+                            x = cards.dataStore[i].weight
                     }
-                    for (var i = 0; i < curCards.length; i++) {
-                        if (!mark[curCards[i].weight])
-                            mark[curCards[i].weight] = 1
+                    for (var i = 0; i < curCards.dataStore.length; i++) {
+                        if (!mark[curCards.dataStore[i].weight])
+                            mark[curCards.dataStore[i].weight] = 1
                         else
-                            mark[curCards[i].weight]++
-                        if (mark[curCards[i].weight] == 3)
-                            y = curCards[i].weight
+                            mark[curCards.dataStore[i].weight]++
+                        if (mark[curCards.dataStore[i].weight] == 3)
+                            y = curCards.dataStore[i].weight
                     }
                     if (x <= y) {
                         console.log(`分值小于等于牌桌上的牌`)
@@ -62,21 +63,21 @@ logic.canPlayCardsJudge = function (cards, curCards) {
                     var mark = {}
                     var x = 0
                     var y = 0
-                    for (var i = 0; i < cards.length; i++) {
-                        if (!mark[cards[i].weight])
-                            mark[cards[i].weight] = 1
+                    for (var i = 0; i < cards.dataStore.length; i++) {
+                        if (!mark[cards.dataStore[i].weight])
+                            mark[cards.dataStore[i].weight] = 1
                         else
-                            mark[cards[i].weight]++
-                        if (mark[cards[i].weight] == 4)
-                            x = cards[i].weight
+                            mark[cards.dataStore[i].weight]++
+                        if (mark[cards.dataStore[i].weight] == 4)
+                            x = cards.dataStore[i].weight
                     }
-                    for (var i = 0; i < curCards.length; i++) {
-                        if (!mark[curCards[i].weight])
-                            mark[curCards[i].weight] = 1
+                    for (var i = 0; i < curCards.dataStore.length; i++) {
+                        if (!mark[curCards.dataStore[i].weight])
+                            mark[curCards.dataStore[i].weight] = 1
                         else
-                            mark[curCards[i].weight]++
-                        if (mark[curCards[i].weight] == 4)
-                            y = curCards[i].weight
+                            mark[curCards.dataStore[i].weight]++
+                        if (mark[curCards.dataStore[i].weight] == 4)
+                            y = curCards.dataStore[i].weight
                     }
                     if (x <= y) {
                         console.log(`分值小于等于牌桌上的牌`)
@@ -87,24 +88,24 @@ logic.canPlayCardsJudge = function (cards, curCards) {
                     var mark = {}
                     var max1 = 0
                     var max2 = 0
-                    for (var i = 0; i < cards.length; i++) {
-                        if (!mark[cards[i].weight])
-                            mark[cards[i].weight] = 1
+                    for (var i = 0; i < cards.dataStore.length; i++) {
+                        if (!mark[cards.dataStore[i].weight])
+                            mark[cards.dataStore[i].weight] = 1
                         else
-                            mark[cards[i].weight]++
-                        if (mark[cards[i].weight] == 3) {
-                            if (cards[i].weight > max1)
-                                max1 = cards[i].weight
+                            mark[cards.dataStore[i].weight]++
+                        if (mark[cards.dataStore[i].weight] == 3) {
+                            if (cards.dataStore[i].weight > max1)
+                                max1 = cards.dataStore[i].weight
                         }
                     }
-                    for (var i = 0; i < curCards.length; i++) {
-                        if (!mark[curCards[i].weight])
-                            mark[curCards[i].weight] = 1
+                    for (var i = 0; i < curCards.dataStore.length; i++) {
+                        if (!mark[curCards.dataStore[i].weight])
+                            mark[curCards.dataStore[i].weight] = 1
                         else
-                            mark[curCards[i].weight]++
-                        if (mark[curCards[i].weight] == 3) {
-                            if (curCards[i].weight > max2)
-                                max2 = curCards[i].weight
+                            mark[curCards.dataStore[i].weight]++
+                        if (mark[curCards.dataStore[i].weight] == 3) {
+                            if (curCards.dataStore[i].weight > max2)
+                                max2 = curCards.dataStore[i].weight
                         }
                     }
                     if (max1 <= max2) {
@@ -119,21 +120,22 @@ logic.canPlayCardsJudge = function (cards, curCards) {
 }
 
 logic.cardsTypeJudge = function (cards) {
-    if (cards.length == 1)
+    //var cards = new Cards
+    if (cards.dataStore.length == 1)
         return '单牌'
-    if (cards.length == 2 && cards[0].weight >= 14 && cards[1].weight >= 14)
+    if (cards.dataStore.length == 2 && cards.dataStore[0].weight >= 14 && cards.dataStore[1].weight >= 14)
         return '火箭'
 
-    cards = orderBy(cards, ['weight'], ['desc'])
+    //cards = orderBy(cards, ['weight'], ['desc'])
     let arr = []
     let cnt = 1
     let flag = true //判断顺牌
-    for (var i = 0; i < cards.length; i++) {
-        if (i < cards.length - 1 && cards[i].weight == cards[i + 1].weight)
+    for (var i = 0; i < cards.dataStore.length; i++) {
+        if (i < cards.dataStore.length - 1 && cards.dataStore[i].weight == cards.dataStore[i + 1].weight)
             cnt++
         else {
             if ((arr.length > 0 && cnt != arr[arr.length - 1])
-                || cards[i].weight >= 13 || cards.length < 5)
+                || cards.dataStore[i].weight >= 13 || cards.dataStore.length < 5)
                 flag = false
             arr.push(cnt)
             cnt = 1
@@ -143,9 +145,9 @@ logic.cardsTypeJudge = function (cards) {
     if (flag) {
         if (arr[0] == 1 && arr.length >= 5) {
             let judge = true
-            for (var i = 0; i < cards.length; i++) {
-                if (i < cards.length - 1) {
-                    if (cards[i].weight - cards[i + 1].weight != 1) {
+            for (var i = 0; i < cards.dataStore.length; i++) {
+                if (i < cards.dataStore.length - 1) {
+                    if (cards.dataStore[i].weight - cards.dataStore[i + 1].weight != 1) {
                         judge = false
                     }
                 }
@@ -155,9 +157,9 @@ logic.cardsTypeJudge = function (cards) {
         }
         else if (arr[0] == 2 && arr.length >= 3) {
             let judge = true
-            for (var i = 0; i < cards.length; i = i + 2) {
-                if (i < cards.length - 2) {
-                    if (cards[i].weight - cards[i + 2].weight != 1) {
+            for (var i = 0; i < cards.dataStore.length; i = i + 2) {
+                if (i < cards.dataStore.length - 2) {
+                    if (cards.dataStore[i].weight - cards.dataStore[i + 2].weight != 1) {
                         judge = false
                     }
                 }
@@ -167,9 +169,9 @@ logic.cardsTypeJudge = function (cards) {
         }
         else if (arr[0] == 3 && arr.length >= 2) {
             let judge = true
-            for (var i = 0; i < cards.length; i = i + 3) {
-                if (i < cards.length - 3) {
-                    if (cards[i].weight - cards[i + 3].weight != 1) {
+            for (var i = 0; i < cards.dataStore.length; i = i + 3) {
+                if (i < cards.dataStore.length - 3) {
+                    if (cards.dataStore[i].weight - cards.dataStore[i + 3].weight != 1) {
                         judge = false
                     }
                 }
@@ -226,22 +228,22 @@ logic.systemPlay = function (curCards, Data) { //系统出牌
     var map = {}
     var x = 0
     var y = 0
-    for (var i = 0; i < curCards.length; i++) {
-        if (!map[curCards[i].weight])
-            map[curCards[i].weight] = 1
+    for (var i = 0; i < curCards.dataStore.length; i++) {
+        if (!map[curCards.dataStore[i].weight])
+            map[curCards.dataStore[i].weight] = 1
         else
-            map[curCards[i].weight]++
-        if (map[curCards[i].weight] == 3)
-            x = curCards[i].weight
-        else if (map[curCards[i].weight] == 4) {
+            map[curCards.dataStore[i].weight]++
+        if (map[curCards.dataStore[i].weight] == 3)
+            x = curCards.dataStore[i].weight
+        else if (map[curCards.dataStore[i].weight] == 4) {
             if (x > 0)
                 x = 0
-            y = curCards[i].weight
+            y = curCards.dataStore[i].weight
         }
     }
 
     var type = this.cardsTypeJudge(curCards)
-    var len = curCards.length
+    var len = curCards.dataStore.length
     if (len == 0) {
         Data[0].isChoosed = true
         return 0
@@ -252,7 +254,7 @@ logic.systemPlay = function (curCards, Data) { //系统出牌
 
     if (type == '单牌') {
         for (var i = 0; i < Data.length; i++) {
-            if (Data[i].weight > curCards[0].weight) {
+            if (Data[i].weight > curCards.dataStore[0].weight) {
                 Data[i].isChoosed = true
                 return 0
             }
@@ -260,7 +262,7 @@ logic.systemPlay = function (curCards, Data) { //系统出牌
     }
     else if (type == '对牌') {
         for (var i = 0; i < Data.length - 1; i++) {
-            if (Data[i].weight == Data[i + 1].weight && Data[i].weight > curCards[0].weight) {
+            if (Data[i].weight == Data[i + 1].weight && Data[i].weight > curCards.dataStore[0].weight) {
                 Data[i].isChoosed = true
                 Data[i + 1].isChoosed = true
                 return 0
@@ -392,7 +394,7 @@ logic.systemPlay = function (curCards, Data) { //系统出牌
                 }
             }
             else {
-                if (Data[i].weight > curCards[0].weight) {
+                if (Data[i].weight > curCards.dataStore[0].weight) {
                     mark = Data[i].weight
                     arr[i] = true
                     cnt++
@@ -406,7 +408,7 @@ logic.systemPlay = function (curCards, Data) { //系统出牌
         for (var i = 0; i < Data.length - 1; i++) {
             if (Data[i].weight > 12)
                 break
-            if (Data[i].weight == Data[i + 1].weight && Data[i].weight > curCards[0].weight) {
+            if (Data[i].weight == Data[i + 1].weight && Data[i].weight > curCards.dataStore[0].weight) {
                 if (!cur) {
                     cnt++
                     cur = Data[i].weight
@@ -449,7 +451,7 @@ logic.systemPlay = function (curCards, Data) { //系统出牌
             if (Data[i].weight > 12)
                 break
             if (Data[i].weight == Data[i + 1].weight &&
-                Data[i].weight == Data[i + 2].weight && Data[i].weight > curCards[0].weight) {
+                Data[i].weight == Data[i + 2].weight && Data[i].weight > curCards.dataStore[0].weight) {
                 if (!cur) {
                     cnt++
                     cur = Data[i].weight

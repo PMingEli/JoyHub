@@ -1,4 +1,4 @@
-"use strict";//严格模式
+//"use strict";//严格模式
 class card {
     constructor(type, number, weight) {
         this.type = type;
@@ -21,6 +21,7 @@ function Set() {
     this.contains = contains;//判断一个集合中是否包含某个元素
     this.intersect = intersect;//交集
     this.sort = sort;
+    this.cardsTypeJudge = cardsTypeJudge;
 }
 
 function add(data) {
@@ -90,6 +91,108 @@ function sort() {
             this.dataStore[i] = c;
         }
     }
+}
+
+function cardsTypeJudge() {
+    //var this = new this
+    if (this.dataStore.length == 1)
+        return '单牌'
+    if (this.dataStore.length == 2 && this.dataStore[0].weight >= 14 && this.dataStore[1].weight >= 14)
+        return '火箭'
+
+    //this = orderBy(this, ['weight'], ['desc'])
+    let arr = []
+    let cnt = 1
+    let flag = true //判断顺牌
+    for (var i = 0; i < this.dataStore.length; i++) {
+        if (i < this.dataStore.length - 1 && this.dataStore[i].weight == this.dataStore[i + 1].weight)
+            cnt++
+        else {
+            if ((arr.length > 0 && cnt != arr[arr.length - 1])
+                || this.dataStore[i].weight >= 13 || this.dataStore.length < 5)
+                flag = false
+            arr.push(cnt)
+            cnt = 1
+        }
+    }
+
+    if (flag) {
+        if (arr[0] == 1 && arr.length >= 5) {
+            let judge = true
+            for (var i = 0; i < this.dataStore.length; i++) {
+                if (i < this.dataStore.length - 1) {
+                    if (this.dataStore[i].weight - this.dataStore[i + 1].weight != 1) {
+                        judge = false
+                    }
+                }
+            }
+            if (judge)
+                return '单顺'
+        }
+        else if (arr[0] == 2 && arr.length >= 3) {
+            let judge = true
+            for (var i = 0; i < this.dataStore.length; i = i + 2) {
+                if (i < this.dataStore.length - 2) {
+                    if (this.dataStore[i].weight - this.dataStore[i + 2].weight != 1) {
+                        judge = false
+                    }
+                }
+            }
+            if (judge)
+                return '双顺'
+        }
+        else if (arr[0] == 3 && arr.length >= 2) {
+            let judge = true
+            for (var i = 0; i < this.dataStore.length; i = i + 3) {
+                if (i < this.dataStore.length - 3) {
+                    if (this.dataStore[i].weight - this.dataStore[i + 3].weight != 1) {
+                        judge = false
+                    }
+                }
+            }
+            if (judge)
+                return '三顺'
+        }
+    }
+    else {
+        arr = sortBy(arr)
+        if (arr.length == 1) {
+            if (arr[0] == 2)
+                return '对牌'
+            else if (arr[0] == 3)
+                return '三张牌'
+            else if (arr[0] == 4)
+                return '炸弹'
+        }
+        else if (arr.length == 2) {
+            if (arr[0] == 1 && arr[1] == 3)
+                return '三带一张牌'
+            else if (arr[0] == 2 && arr[1] == 3)
+                return '三带一对牌'
+        }
+        else if (arr.length == 3) {
+            if ((arr[0] == 1 && arr[1] == 1 && arr[2] == 4) ||
+                (arr[0] == 2 && arr[1] == 2 && arr[2] == 4))
+                return '四带二'
+        }
+        else if (arr.length >= 4) {
+            if (arr.length % 2 == 0) {
+                let flag = true
+                for (var i = 0; i < arr.length / 2; i++) {
+                    if ((i < arr.length / 2 - 1 && arr[i] != arr[i + 1]) ||
+                        (arr[i] != 1 && arr[i] != 2))
+                        flag = false
+                }
+                for (var i = arr.length / 2; i < arr.length; i++) {
+                    if (arr[i] != 3)
+                        flag = false
+                }
+                if (flag)
+                    return '飞机带翅膀'
+            }
+        }
+    }
+    return null
 }
 
 //生成从minNum到maxNum的随机数
@@ -177,3 +280,13 @@ for (var i = 0; i < player1.size(); i++) {
 }
 
 //console.log(player4.intersect(player3));
+var cards = new Set
+var curCards = new Set
+
+for (var i = 3; i < 9; i++) {
+    var c = new card("Heart",i+2+'',i)
+    cards.add(c)
+}
+cards.sort()
+console.log(cards)
+console.log(cards.cardsTypeJudge())
