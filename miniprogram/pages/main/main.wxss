@@ -1,0 +1,23 @@
+/* pages/main/main.wxss */
+.gameicon{
+  width: 150rpx;
+  height: 150rpx;
+  margin-top: 50rpx;
+  margin-left: 125rpx;
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+} 
+
+.container2 {
+  display: flex;
+  flex-direction: row;
+} 
+
+.text{
+  font-size: 45rpx;
+  margin-left: 110rpx;
+  margin-top: 100rpx;
+}

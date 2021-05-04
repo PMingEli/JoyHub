@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/main/main",
+    "pages/paihang/paihang"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "JoyHub"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "主页",
+        "iconPath": "/static/images/tabs/home.png",
+        "selectedIconPath": "/static/images/tabs/selecthome.png"
+      },
+      {
+        "pagePath": "pages/paihang/paihang",
+        "text": "排行榜",
+        "iconPath": "/static/images/tabs/paihangbang.png",
+        "selectedIconPath": "/static/images/tabs/selectpaihangbang.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap58.json"
+}
