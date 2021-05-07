@@ -14,6 +14,11 @@ export default class logic {
         this.player3 = new Cards()
         this.curcards = new Cards()
         this.selectcards = new Cards()
+        this.roomnumber = 2333
+        this.base = 1;
+        this.times = 1;
+        this.token = 1;
+        this.countdown = 30;
     }
 
     init = function () {
