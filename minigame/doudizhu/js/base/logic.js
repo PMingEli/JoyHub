@@ -7,7 +7,7 @@ import {
 
 export default class logic {
     constructor() {
-        this.dizhu = Math.floor(Math.random() * 3);
+        this.dizhu = 0;
         this.allCards = new Cards()
         this.player1 = new Cards()
         this.player2 = new Cards()
@@ -70,14 +70,12 @@ export default class logic {
                 this.player1.add(this.allCards.remove(0))
             }
             this.player1.sort();
-        }
-        else if (this.dizhu == 1) {
+        } else if (this.dizhu == 1) {
             for (let i = 0; i < 3; i++) {
                 this.player2.add(this.allCards.remove(0))
             }
             this.player2.sort();
-        }
-        else {
+        } else {
             for (let i = 0; i < 3; i++) {
                 this.player3.add(this.allCards.remove(0))
             }
@@ -198,3 +196,5 @@ export default class logic {
         return 0
     }
 }
+
+let lg = new logic()

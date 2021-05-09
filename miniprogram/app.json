@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/main/main",
     "pages/paihang/paihang"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",

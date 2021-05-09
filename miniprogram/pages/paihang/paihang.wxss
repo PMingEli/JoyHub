@@ -1,1 +1,24 @@
 /* pages/paihang/paihang.wxss */
+.container1 {
+  font-size: 30px;
+  margin-top: 20px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+} 
+
+.container2 {
+  margin-top: 20px;
+  font-size: 20px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+} 
+
+.texttype{
+  font-size: 20px;
+  justify-content: center;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}

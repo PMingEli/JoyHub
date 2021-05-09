@@ -1,2 +1,22 @@
 <!--pages/paihang/paihang.wxml-->
-<text>pages/paihang/paihang.wxml</text>
+<view>
+  <view class="container1">
+    <text>积分排行榜</text>
+  </view>
+  <view class="container2">
+      <text>演员</text>
+      <text class="texttype">666</text>
+    </view>
+    <view class="container2">
+      <text>张三</text>
+      <text class="texttype">233</text>
+    </view>
+    <view class="container2">
+      <text>李四</text>
+      <text class="texttype">111</text>
+    </view>
+    <view class="container2">
+      <text>王五</text>
+      <text class="texttype">100</text>
+    </view>
+</view>

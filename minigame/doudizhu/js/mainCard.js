@@ -35,6 +35,8 @@ export default class MainCard {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         this.bg.display(ctx)
         this.gameinfo.rendermsg(ctx, 100)
+        this.touchHandler = this.touchEventHandler.bind(this)
+        canvas.addEventListener('touchstart', this.touchHandler)
     }
 
     update() {

@@ -5,6 +5,7 @@ export default class card {
         this.type = type;
         this.number = number;
         this.weight = weight;
+        this.status = 0;
     }
 }
 
