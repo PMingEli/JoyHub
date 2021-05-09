@@ -1,13 +1,17 @@
-import './dafeiji/js/libs/weapp-adapter'
-import './dafeiji/js/libs/symbol'
+// import './dafeiji/js/libs/weapp-adapter'
+// import './dafeiji/js/libs/symbol'
 
-import Main from './dafeiji/js/main'
-import MainCard from './doudizhu/js/mainCard'
-import GameCard from './doudizhu/js/gameCard'
+// import Main from './dafeiji/js/main'
+// import MainCard from './doudizhu/js/mainCard'
+// import GameCard from './doudizhu/js/gameCard'
 //new Main()
-import logic from './doudizhu/js/base/logic'
+// import logic from './doudizhu/js/base/logic'
+
+import './yiqidafeiji/libs/adapter/index';
+import App from './yiqidafeiji/src/index.js';
+new App()
 //new MainCard()
-new GameCard()
+//new GameCard()
 // var logi = new logic()
 // logi.init()
 // logi.fapai()
